@@ -1,41 +1,76 @@
 class Telephone {
     constructor(){
 
-        this.contact = []; 
+        this.contacts = []; 
     }
 
     addPhoneNumber( name, number){
-        return this.contact.push({name, number})
+        return this.contacts.push({name, number})
     }
 
     removePhoneNumber(number){
-        const findNumber = this.contact.find(num => num.number === number );
+        const findNumber = this.contacts.find(num => num.number === number );
 
         if (!findNumber) return false;
 
-        this.contact.splice(findNumber, 1)
+        this.contacts.splice(findNumber, 1)
     }
 
     dialPhoneNumber(number){
-        const findNumber = this.contact.find(num => num.number === number );
+        const findNumber = this.contacts.find(num => num.number === number );
 
         if (!findNumber) return `${number} does not exist`;
 
-        return `Dialing ${findNumber.name}: ${number}`
+        return `${findNumber.name}: ${number}`
 
     }
 
-    show(){
-        return this.contact;
+    notify(){
+        return 'Now dailing ' 
     }
+
+    // show(){
+    //     return this.contact;
+    // }
 }
 
-const t = new Telephone()
-t.addPhoneNumber('Muodum', '08163360727')
-t.addPhoneNumber('Ann', '08163364567')
+ class Observer extends Telephone {
 
-console.log(t.show())
-t.removePhoneNumber('08163360727')
-console.log('////////////////////////////////////')
-console.log(t.show())
-console.log (t.dialPhoneNumber('08163364567'))
+    viewContacts(){
+        return this.contacts;
+    }
+
+    add(name, number){
+        return this.addPhoneNumber(name, number)
+    }
+
+    remove(number){
+        return this.removePhoneNumber(number)
+    }
+
+    dial(number){
+        return this.notify() + this.dialPhoneNumber(number)
+
+    }
+
+   
+ }
+
+
+
+
+
+
+const observer = new Observer()
+observer.add('Muodum', '08163360727')
+observer.add('Ann', '08163364567')
+observer.add('Ebuka', '00963364567')
+observer.add('Paul', '08063364000')
+
+console.log(observer.viewContacts())
+observer.remove('08163360727')
+console.log(observer.dial('00963364567'))
+// console.log('////////////////////////////////////')
+// console.log(t.viewContacts())
+// console.log (t.dialPhoneNumber('08163364567'))
+
