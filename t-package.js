@@ -21,13 +21,13 @@ class Telephone {
 
         if (!findNumber) return `${number} does not exist`;
 
-        return `${findNumber.name}: ${number}`
+        return `Now dialing ${findNumber.name}: ${number}`
 
     }
 
-    notify(){
-        return 'Now dailing ' 
-    }
+    // notify(){
+    //     return 'Now dailing ' 
+    // }
 
     // show(){
     //     return this.contact;
@@ -49,7 +49,7 @@ class Telephone {
     }
 
     dial(number){
-        return this.notify() + this.dialPhoneNumber(number)
+        return  this.dialPhoneNumber(number)
 
     }
 
@@ -58,19 +58,17 @@ class Telephone {
 
 
 
+ const observer = new Observer()
 
+ observer.add('Muodum', '08163360727')
+ observer.add('Ann', '08163364567')
+ observer.add('Ebuka', '00963364567')
+ observer.add('Paul', '08063364000')
 
+const viewContacts = observer.viewContacts()
 
-const observer = new Observer()
-observer.add('Muodum', '08163360727')
-observer.add('Ann', '08163364567')
-observer.add('Ebuka', '00963364567')
-observer.add('Paul', '08063364000')
+console.log( {viewContacts} )
 
-console.log(observer.viewContacts())
 observer.remove('08163360727')
 console.log(observer.dial('00963364567'))
-// console.log('////////////////////////////////////')
-// console.log(t.viewContacts())
-// console.log (t.dialPhoneNumber('08163364567'))
 
